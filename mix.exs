@@ -22,7 +22,8 @@ defmodule Validex.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:mix_test_interactive, "~> 1.0", only: :dev, runtime: false}
+      {:mix_test_interactive, "~> 1.0", only: :dev, runtime: false},
+      {:exiban, "~> 0.0.5"}
     ]
   end
 end

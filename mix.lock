@@ -1,4 +1,5 @@
 %{
+  "exiban": {:hex, :exiban, "0.0.5", "00b30dd889712f73ced87fd41d5af252ba93e04b08552a40919de67a0635f1f6", [:mix], [], "hexpm", "acddde30fb316000425a741cd731b20099a4193144ea149d138ddcfbf97ee0e8"},
   "file_system": {:hex, :file_system, "0.2.10", "fb082005a9cd1711c05b5248710f8826b02d7d1784e7c3451f9c1231d4fc162d", [:mix], [], "hexpm", "41195edbfb562a593726eda3b3e8b103a309b733ad25f3d642ba49696bf715dc"},
   "mix_test_interactive": {:hex, :mix_test_interactive, "1.1.0", "e3e048ea8b56637c8e5614044483e11d78f81f70e9afb811c06ad3db69704c32", [:mix], [{:file_system, "~> 0.2", [hex: :file_system, repo: "hexpm", optional: false]}, {:typed_struct, "~> 0.2.1", [hex: :typed_struct, repo: "hexpm", optional: false]}], "hexpm", "2288a2edc735ca4879a7c17b9fd9fd4b8b84a57a775c3228db4655806a0a4799"},
   "typed_struct": {:hex, :typed_struct, "0.2.1", "e1993414c371f09ff25231393b6430bd89d780e2a499ae3b2d2b00852f593d97", [:mix], [], "hexpm", "8f5218c35ec38262f627b2c522542f1eae41f625f92649c0af701a6fab2e11b3"},
