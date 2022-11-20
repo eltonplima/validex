@@ -6,6 +6,7 @@ defmodule Validex.Banking.BBAN.GeneratorTest do
   test "generate" do
     assert {:ok, bban} = Validex.Banking.BBAN.Generator.generate()
     assert %BBAN{} = bban
+    assert BBAN.Validator.valid?(bban)
     assert String.length(bban.bank_identifier) == 4
     assert String.length(bban.local_account_number) == 17
   end
