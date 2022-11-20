@@ -14,19 +14,29 @@ defmodule Validex.Banking.BBAN do
   def new(bban) when is_binary(bban) do
     regex = ~r/^(?P<bank_identifier>\d{4})(?P<local_account_number>\d{17})/
 
-    params =
-      Regex.named_captures(regex, bban)
-      |> Map.new(fn {k, v} -> {String.to_existing_atom(k), v} end)
-
-    params =
-      Map.merge(params, %{normalized: "#{params.bank_identifier}#{params.local_account_number}"})
-
-    Map.merge(new(), params)
+    with :ok <- sanity_check(bban),
+         named_captures <- Regex.named_captures(regex, bban),
+         params <- Map.new(named_captures, fn {k, v} -> {String.to_existing_atom(k), v} end),
+         params <-
+           Map.merge(params, %{
+             normalized: "#{params.bank_identifier}#{params.local_account_number}"
+           }) do
+      Map.merge(new(), params)
+    end
   end
 
   def new(_invalid), do: {:error, :invalid}
 
   def new() do
     %__MODULE__{bank_identifier: nil, local_account_number: nil, normalized: nil}
+  end
+
+  defp sanity_check(bban) do
+    bban
+    |> String.length()
+    |> case do
+      21 -> :ok
+      _ -> {:error, :invalid}
+    end
   end
 end

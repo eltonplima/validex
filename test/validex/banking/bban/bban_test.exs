@@ -4,9 +4,17 @@ defmodule Validex.Banking.BBANTest do
 
   alias Validex.Banking.BBAN
 
-  describe "new/1" do
-    test "return error when receive invalid param" do
+  describe "new/1 returns error when invalid parameter" do
+    test "integer" do
       assert {:error, :invalid} = BBAN.new(1)
+    end
+
+    test "invalid length" do
+      assert {:error, :invalid} = BBAN.new("1")
+    end
+
+    test "nil" do
+      assert {:error, :invalid} = BBAN.new(nil)
     end
   end
 end
