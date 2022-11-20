@@ -24,6 +24,8 @@ defmodule Validex.Banking.BBAN do
     Map.merge(new(), params)
   end
 
+  def new(_invalid), do: {:error, :invalid}
+
   def new() do
     %__MODULE__{bank_identifier: nil, local_account_number: nil, normalized: nil}
   end
