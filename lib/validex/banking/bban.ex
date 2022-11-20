@@ -1,5 +1,6 @@
 defmodule Validex.Banking.BBAN do
-  defstruct [:bank_identifier, :local_account_number]
+  @enforce_keys [:bank_identifier, :local_account_number, :normalized]
+  defstruct [:bank_identifier, :local_account_number, :normalized]
 
   @type t :: %__MODULE__{}
 
@@ -17,10 +18,13 @@ defmodule Validex.Banking.BBAN do
       Regex.named_captures(regex, bban)
       |> Map.new(fn {k, v} -> {String.to_existing_atom(k), v} end)
 
+    params =
+      Map.merge(params, %{normalized: "#{params.bank_identifier}#{params.local_account_number}"})
+
     Map.merge(new(), params)
   end
 
   def new() do
-    %__MODULE__{bank_identifier: nil, local_account_number: nil}
+    %__MODULE__{bank_identifier: nil, local_account_number: nil, normalized: nil}
   end
 end
